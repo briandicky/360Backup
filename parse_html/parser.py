@@ -3,12 +3,13 @@ import subprocess
 
 filename = sys.argv[1]
 
-
 f = open(filename,'r')
 
 http_prefix = 'http://download.tsi.telecom-paristech.fr/gpac/SRD/srd_hevc/multi_rate_p60/'
 
-subprocess.call("mkdir srd_hevc", shell=True)
+sub_folder = 'srd_hevc'
+subprocess.call("mkdir %s" % sub_folder, shell=True)
+subprocess.call("cd %s" % sub_folder, shell=True)
 
 for line in f:
     
@@ -22,6 +23,4 @@ for line in f:
 
 	subprocess.call("wget %s%s" % (http_prefix,href), shell=True)
 
-        subprocess.call("mv %s srd_hevc" % href, shell=True)
-
-	raw_input()
+	#raw_input()
